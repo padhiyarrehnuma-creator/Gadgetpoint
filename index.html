@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GadgetPoint | Future Tech Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="accountPage" class="account-page">
+  <div class="account-card">
+    <div class="brand big-brand"><span>Gadget</span>Point</div>
+    <p class="muted" id="accountSubtitle">Create your account to enter the store</p>
+
+    <form id="signupForm">
+      <input id="accName" type="text" placeholder="Full Name" required>
+      <input id="accEmail" type="email" placeholder="Email Address" required>
+      <input id="accPhone" type="tel" placeholder="Phone Number" required>
+      <div class="pass-wrap"><input id="accPassword" type="password" placeholder="Create Password" required><button type="button" class="eye" data-target="accPassword">👁</button></div>
+      <div class="pass-wrap"><input id="accConfirm" type="password" placeholder="Confirm Password" required><button type="button" class="eye" data-target="accConfirm">👁</button></div>
+      <button class="primary-btn full" type="submit">🚀 Create Account</button>
+    </form>
+
+    <form id="loginForm" class="hidden">
+      <input id="loginEmail" type="email" placeholder="Email Address" required>
+      <div class="pass-wrap"><input id="loginPassword" type="password" placeholder="Password" required><button type="button" class="eye" data-target="loginPassword">👁</button></div>
+      <button class="primary-btn full" type="submit">🔐 Login</button>
+    </form>
+
+    <p class="switch-auth"><span id="authText">Already have an account?</span> <button id="switchAuth" type="button">Login here</button></p>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <div class="nav-inner">
+    <a class="brand" href="#" data-section="home"><span>Gadget</span>Point</a>
+    <button class="mobile-menu" id="mobileMenu">☰</button>
+    <nav id="navLinks">
+      <a class="nav-link active" href="#" data-section="home">⌂ Home</a>
+      <a class="nav-link" href="#" data-section="about">▣ About</a>
+      <a class="nav-link" href="#" data-section="products">▦ Products</a>
+      <a class="nav-link" href="#" data-section="offers">🔥 Offers</a>
+      <a class="nav-link" href="#" data-section="profile">◉ Profile</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="search"><input id="searchInput" placeholder="Search gadgets..."><button id="searchBtn">⌕</button></div>
+      <button class="icon-btn" id="wishlistBtn">♡ <b id="wishCount">0</b></button>
+      <button class="icon-btn" id="cartBtn">🛒 <b id="cartCount">0</b></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="home" class="section active">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">NEXT-GEN ELECTRONICS</div>
+      <h1>Upgrade your world.<br><span>Power your future.</span></h1>
+      <p>Premium phones, laptops, wearables and audio gear — now in a bold black, orange and white experience.</p>
+      <div class="hero-actions">
+        <button class="primary-btn" data-section="products">Explore Products →</button>
+        <button class="outline-btn" data-section="offers">View Offers</button>
+      </div>
+      <div class="stats">
+        <div><strong>29+</strong><small>Products</small></div>
+        <div><strong>8</strong><small>Categories</small></div>
+        <div><strong>24/7</strong><small>Support</small></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="orbit orbit1"></div><div class="orbit orbit2"></div>
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000&q=85&auto=format&fit=crop" alt="Premium smartphone">
+      <div class="floating-tag">⚡ FUTURE READY</div>
+    </div>
+  </div>
+
+  <div class="home-strip">
+    <div><span>⚡</span><b>Fast Delivery</b><small>2–3 business days</small></div>
+    <div><span>🛡</span><b>Genuine Products</b><small>Quality checked</small></div>
+    <div><span>↻</span><b>Easy Returns</b><small>30-day return policy</small></div>
+    <div><span>💳</span><b>Secure Payments</b><small>Multiple methods</small></div>
+  </div>
+
+  <div class="section-head"><div><span class="eyebrow">SHOP BY TYPE</span><h2>Explore Categories</h2></div><button class="text-btn" data-section="products">See all →</button></div>
+  <div class="category-showcase" id="homeCategories"></div>
+
+  <div class="section-head"><div><span class="eyebrow">TRENDING NOW</span><h2>Featured Gadgets</h2></div><button class="text-btn" data-section="products">Shop all →</button></div>
+  <div class="product-grid" id="featuredGrid"></div>
+</section>
+
+<section id="about" class="section hidden">
+  <div class="page-title"><span class="eyebrow">ABOUT US</span><h2>Technology with a human touch.</h2><p>GadgetPoint is a modern electronics marketplace focused on simple shopping, useful choices and a smooth post-purchase experience.</p></div>
+  <div class="about-grid">
+    <div class="about-image"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=85&auto=format&fit=crop" alt="Technology desk"></div>
+    <div class="about-copy">
+      <h3>Why GadgetPoint?</h3>
+      <p>We bring popular electronics into one clean storefront. Compare products, save favourites, add items to your cart and track your order from your Profile.</p>
+      <div class="about-points">
+        <div>01 <b>Authentic products</b><span>Clear product details and pricing.</span></div>
+        <div>02 <b>Smart shopping</b><span>Search, filters, sorting, wishlist and reviews.</span></div>
+        <div>03 <b>Order visibility</b><span>See purchased items and payment balance after checkout.</span></div>
+        <div>04 <b>Future-ready UI</b><span>3D cards, zoom interactions and responsive design.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section hidden">
+  <div class="page-title compact"><span class="eyebrow">PRODUCT LAB</span><h2>All gadgets. One place.</h2></div>
+  <div class="category-tabs" id="categoryTabs"></div>
+  <div class="filter-row">
+    <select id="priceFilter"><option value="all">All prices</option><option value="0-10000">Under ₹10,000</option><option value="10000-50000">₹10,000 – ₹50,000</option><option value="50000-100000">₹50,000 – ₹1,00,000</option><option value="100000+">Above ₹1,00,000</option></select>
+    <select id="sortFilter"><option value="default">Default</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="rating">Rating</option></select>
+    <span id="resultCount"></span>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<section id="offers" class="section hidden">
+  <div class="page-title"><span class="eyebrow">LIMITED DEALS</span><h2>Offers that hit different.</h2><p>Use the existing coupon codes at checkout: <b>SAVE10</b> or <b>ELECTRO20</b>.</p></div>
+  <div class="offer-grid">
+    <article class="offer-card orange"><span>FLASH DEAL</span><h3>Smartphone Sale</h3><p>Save up to ₹15,000 on selected phones.</p><b>UP TO 40% OFF</b></article>
+    <article class="offer-card black"><span>LAPTOP FEST</span><h3>Power User Setup</h3><p>Laptops + accessories for your next project.</p><b>UP TO 35% OFF</b></article>
+    <article class="offer-card white"><span>AUDIO ZONE</span><h3>Sound Upgrade</h3><p>Premium headphones and earbuds.</p><b>BUY 2, GET 1</b></article>
+    <article class="offer-card orange"><span>WEARABLE TECH</span><h3>Smart Watch Deals</h3><p>Fitness, GPS and everyday tracking.</p><b>UP TO 50% OFF</b></article>
+    <article class="offer-card black"><span>COMBO</span><h3>Phone + Audio</h3><p>Build a smarter everyday setup.</p><b>SAVE 25%</b></article>
+    <article class="offer-card white"><span>CHARGING</span><h3>Power Essentials</h3><p>Fast chargers and compact adapters.</p><b>FROM ₹1,499</b></article>
+  </div>
+</section>
+
+<section id="profile" class="section hidden">
+  <div class="profile-top">
+    <div class="profile-photo-wrap">
+      <img id="profilePhoto" src="https://ui-avatars.com/api/?name=Gadget+User&background=ff6a00&color=fff&size=240" alt="Profile">
+      <label class="photo-upload">📷<input id="photoInput" type="file" accept="image/*"></label>
+    </div>
+    <div>
+      <span class="eyebrow">MY ACCOUNT</span><h2 id="profileName">Gadget User</h2><p id="profileContact" class="muted"></p>
+      <button class="outline-btn small" id="editProfileBtn">Edit Profile</button>
+    </div>
+  </div>
+
+  <div class="profile-tabs">
+    <button class="profile-tab active" data-tab="orders">📦 Orders</button>
+    <button class="profile-tab" data-tab="payments">💳 Payments</button>
+    <button class="profile-tab" data-tab="addresses">📍 Addresses</button>
+    <button class="profile-tab" data-tab="settings">⚙ Settings</button>
+  </div>
+
+  <div id="tab-orders" class="profile-content active"></div>
+  <div id="tab-payments" class="profile-content hidden"></div>
+  <div id="tab-addresses" class="profile-content hidden"></div>
+  <div id="tab-settings" class="profile-content hidden">
+    <div class="settings-card">
+      <h3>Account Settings</h3>
+      <div class="setting-row"><span>Profile details</span><button class="outline-btn small" id="editProfileBtn2">Edit</button></div>
+      <div class="setting-row"><span>Logout</span><button class="danger-btn" id="logoutBtn">Logout</button></div>
+    </div>
+  </div>
+
+  <div id="editProfileBox" class="edit-box hidden">
+    <h3>Edit Profile</h3>
+    <input id="editName" placeholder="Full Name"><input id="editEmail" type="email" placeholder="Email"><input id="editPhone" placeholder="Phone">
+    <div><button class="primary-btn" id="saveProfile">Save</button> <button class="outline-btn" id="cancelProfile">Cancel</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-brand"><div class="brand"><span>Gadget</span>Point</div><p>Premium tech. Smarter shopping.</p></div>
+  <div><b>Shop</b><a data-section="products">Products</a><a data-section="offers">Offers</a><a data-section="about">About</a></div>
+  <div><b>Support</b><span>Order tracking</span><span>Payment help</span><span>Easy returns</span></div>
+  <div><b>GadgetPoint</b><span>© 2026 All rights reserved</span><span>Made for the next generation.</span></div>
+</footer>
+</div>
+
+<div id="cartDrawer" class="drawer"><div class="drawer-head"><h2>Your Cart</h2><button data-close="cartDrawer">✕</button></div><div id="cartItems"></div><div class="cart-bottom"><input id="couponInput" placeholder="Coupon code"><button id="applyCoupon" class="outline-btn">Apply</button><div id="cartTotal"></div><button id="checkoutBtn" class="primary-btn full">Confirm Order →</button></div></div>
+<div id="wishlistDrawer" class="drawer"><div class="drawer-head"><h2>Wishlist</h2><button data-close="wishlistDrawer">✕</button></div><div id="wishlistItems"></div></div>
+<div id="drawerShade" class="shade"></div>
+
+<div id="productModal" class="modal"><div class="modal-box product-modal"><button class="modal-close" data-close="productModal">✕</button><div id="productModalContent"></div></div></div>
+<div id="imageModal" class="modal"><div class="image-modal-box"><button class="modal-close" data-close="imageModal">✕</button><img id="zoomImage" alt="Product zoom"></div></div>
+
+<div id="checkoutModal" class="modal"><div class="modal-box checkout-box"><button class="modal-close" data-close="checkoutModal">✕</button><div id="checkoutContent"></div></div></div>
+
+<div id="toast"></div>
+<button id="topBtn">↑</button>
+<script src="script.js"></script>
+</body>
+</html>
