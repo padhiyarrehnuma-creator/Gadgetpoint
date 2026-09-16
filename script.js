@@ -1,2985 +1,717 @@
 /* =========================================================
-   GADGETPOINT - FINAL SCRIPT
-   Theme: White + Orange + Black
-   Features:
-   - Product cards
-   - 3D tilt
-   - Single click image = zoom
-   - Double click image = product popup
-   - Search
-   - Categories
-   - Filters + sorting
-   - Cart
-   - Wishlist
-   - Checkout
-   - Orders
-   - Payment pending
-   - Order tracking
-   - Profile photo
-   - Profile editing
-   - Address management
+   GadgetPoint — Main Script (28 Products)
    ========================================================= */
 
-
-/* =========================
-   PRODUCTS
-   ========================= */
-
-const products = [
-
-{
-id:1,
-name:"Galaxy S24 Ultra",
-price:99999,
-category:"phones",
-desc:"200MP camera, 12GB RAM, 256GB",
-badge:"HOT",
-discount:15,
-img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:2,
-name:"iPhone 15 Pro Max",
-price:149900,
-category:"phones",
-desc:"48MP camera, 8GB RAM, 256GB",
-badge:"BEST",
-discount:10,
-img:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:3,
-name:"OnePlus 12",
-price:64999,
-category:"phones",
-desc:"50MP camera, 12GB RAM, 256GB",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:4,
-name:"Pixel 8 Pro",
-price:84999,
-category:"phones",
-desc:"50MP camera, 12GB RAM, 128GB",
-badge:"SALE",
-discount:20,
-img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:5,
-name:'MacBook Pro 14"',
-price:159900,
-category:"laptops",
-desc:"M3 chip, 16GB, 512GB SSD",
-badge:"BEST",
-discount:5,
-img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:6,
-name:"Dell XPS 16",
-price:129900,
-category:"laptops",
-desc:"Intel Ultra 9, 32GB, 1TB SSD",
-badge:"SALE",
-discount:25,
-img:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:7,
-name:"Lenovo Yoga 9i",
-price:89900,
-category:"laptops",
-desc:"Intel i7, 16GB, 512GB SSD",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:8,
-name:"ASUS ROG Zephyrus",
-price:149900,
-category:"laptops",
-desc:"RTX 4070, 32GB, 1TB SSD",
-badge:"HOT",
-discount:12,
-img:"https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:9,
-name:"Apple Watch Ultra 2",
-price:89900,
-category:"watches",
-desc:"49mm, GPS + Cellular, rugged",
-badge:"BEST",
-discount:8,
-img:"https://images.unsplash.com/photo-1544117519-31a4b719223d?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:10,
-name:"Samsung Watch 6",
-price:39900,
-category:"watches",
-desc:"40mm, AMOLED, ECG monitor",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:11,
-name:"Garmin Fenix 7",
-price:69900,
-category:"watches",
-desc:"47mm, GPS, solar charging",
-badge:"SALE",
-discount:18,
-img:"https://images.unsplash.com/photo-1544117519-31a4b719223d?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:12,
-name:"Pixel Watch 2",
-price:34900,
-category:"watches",
-desc:"41mm, Fitbit integration",
-badge:"HOT",
-discount:10,
-img:"https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:13,
-name:"iPad Air M2",
-price:59900,
-category:"tablets",
-desc:"10.9 inch, 64GB, Wi-Fi + 5G",
-badge:"BEST",
-discount:5,
-img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:14,
-name:"Samsung Galaxy Tab S9",
-price:79900,
-category:"tablets",
-desc:"11 inch AMOLED, 128GB",
-badge:"NEW",
-discount:12,
-img:"https://images.unsplash.com/photo-1561154464-82e9adf32764?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:15,
-name:"OnePlus Pad",
-price:39900,
-category:"tablets",
-desc:"11.6 inch, 144Hz, 128GB",
-badge:"SALE",
-discount:10,
-img:"https://images.unsplash.com/photo-1561154464-82e9adf32764?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:16,
-name:"Sony WH-1000XM5",
-price:29990,
-category:"headphones",
-desc:"Noise cancelling, 30h battery",
-badge:"BEST",
-discount:10,
-img:"https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:17,
-name:"Bose QC 45",
-price:24990,
-category:"headphones",
-desc:"Active noise cancelling, 24h battery",
-badge:"HOT",
-discount:8,
-img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:18,
-name:"JBL Tune 770",
-price:9990,
-category:"headphones",
-desc:"Wireless, 70h battery, lightweight",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1583394838336-acd977736f90?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:19,
-name:"AirPods Pro 2",
-price:24900,
-category:"earbuds",
-desc:"Active noise cancelling, H2 chip",
-badge:"BEST",
-discount:5,
-img:"https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:20,
-name:"Samsung Galaxy Buds 2",
-price:9990,
-category:"earbuds",
-desc:"Noise cancelling, wireless charging",
-badge:"SALE",
-discount:20,
-img:"https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:21,
-name:"Nothing Ear 2",
-price:14990,
-category:"earbuds",
-desc:"Active noise cancelling, transparent design",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:22,
-name:"Jabra Elite 5",
-price:12990,
-category:"earbuds",
-desc:"Hybrid ANC, 7h battery, multipoint",
-badge:"HOT",
-discount:12,
-img:"https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=900&q=85&auto=format&fit=crop"
-},
-
-{
-id:23,
-name:"Boat Rockerz 450",
-price:1990,
-category:"handsfree",
-desc:"Wireless, 15h battery, comfortable",
-badge:"HOT",
-discount:10,
-img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:24,
-name:"Noise Buds VS104",
-price:1490,
-category:"handsfree",
-desc:"Bluetooth 5.0, 10m range, voice assistant",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:25,
-name:"Sony WI-C200",
-price:2290,
-category:"handsfree",
-desc:"Neckband, 15h battery, lightweight",
-badge:"SALE",
-discount:8,
-img:"https://images.unsplash.com/photo-1578319439584-104c94d37305?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:26,
-name:"JBL C100SI",
-price:799,
-category:"handsfree",
-desc:"Wired earphones, deep bass",
-badge:"HOT",
-discount:5,
-img:"https://images.unsplash.com/photo-1578319439584-104c94d37305?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:27,
-name:"Samsung 25W Adapter",
-price:1499,
-category:"chargers",
-desc:"Super fast charging, USB-C",
-badge:"HOT",
-discount:8,
-img:"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:28,
-name:"Apple 20W Charger",
-price:1999,
-category:"chargers",
-desc:"Fast charging, USB-C, compact",
-badge:"NEW",
-discount:0,
-img:"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&q=85&auto=format&fit=crop"
-},
-
-{
-id:29,
-name:"Spigen 100W Charger",
-price:3499,
-category:"chargers",
-desc:"4 ports, GaN technology, LED display",
-badge:"SALE",
-discount:15,
-img:"https://images.unsplash.com/photo-1609592424837-9b9f5f8f2c8b?w=800&q=85&auto=format&fit=crop"
-}
-
-];
-
-
-/* =========================
-   CATEGORIES
-   ========================= */
-
-const categoryInfo = {
-
-phones:[
-"📱",
-"Phones",
-"Smartphones & flagships",
-"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80&auto=format&fit=crop"
-],
-
-laptops:[
-"💻",
-"Laptops",
-"Power for work & gaming",
-"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80&auto=format&fit=crop"
-],
-
-watches:[
-"⌚",
-"Watches",
-"Smart everyday wear",
-"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80&auto=format&fit=crop"
-],
-
-tablets:[
-"📟",
-"Tablets",
-"Big screen, easy carry",
-"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&q=80&auto=format&fit=crop"
-],
-
-headphones:[
-"🎧",
-"Headphones",
-"Immersive audio",
-"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80&auto=format&fit=crop"
-],
-
-earbuds:[
-"🎵",
-"Earbuds",
-"Compact wireless sound",
-"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&q=80&auto=format&fit=crop"
-],
-
-handsfree:[
-"📞",
-"Hands Free",
-"Everyday listening",
-"https://images.unsplash.com/photo-1578319439584-104c94d37305?w=500&q=80&auto=format&fit=crop"
-],
-
-chargers:[
-"🔋",
-"Chargers",
-"Fast power essentials",
-"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&q=80&auto=format&fit=crop"
-]
-
-};
-
-const categories = Object.keys(categoryInfo);
-
-
-/* =========================
-   LOCAL STORAGE
-   ========================= */
-
-let cart =
-JSON.parse(localStorage.getItem("gadgetpoint_cart")) || [];
-
-let wishlist =
-JSON.parse(localStorage.getItem("gadgetpoint_wishlist")) || [];
-
-let orders =
-JSON.parse(localStorage.getItem("gadgetpoint_orders")) || [];
-
-let account =
-JSON.parse(localStorage.getItem("gadgetpoint_account")) || null;
-
-let addresses =
-JSON.parse(localStorage.getItem("gadgetpoint_addresses")) || [
-
-{
-label:"Home",
-detail:"Add your delivery address"
-},
-
-{
-label:"Office",
-detail:"Add your office address"
-}
-
-];
-
-
-/* =========================
-   VARIABLES
-   ========================= */
-
-let currentCategory = "all";
-let currentSearch = "";
-let currentPrice = "all";
-let currentSort = "default";
-
-let selectedPayment = "cod";
-let coupon = 0;
-
-
-/* =========================
-   SHORTCUT
-   ========================= */
-
-const $ = id => document.getElementById(id);
-
-const money = amount =>
-"₹" + Number(amount).toLocaleString("en-IN");
-
-
-function saveData(){
-
-localStorage.setItem(
-"gadgetpoint_cart",
-JSON.stringify(cart)
-);
-
-localStorage.setItem(
-"gadgetpoint_wishlist",
-JSON.stringify(wishlist)
-);
-
-localStorage.setItem(
-"gadgetpoint_orders",
-JSON.stringify(orders)
-);
-
-localStorage.setItem(
-"gadgetpoint_account",
-JSON.stringify(account)
-);
-
-localStorage.setItem(
-"gadgetpoint_addresses",
-JSON.stringify(addresses)
-);
-
-}
-
-
-/* =========================
-   TOAST
-   ========================= */
-
-function toast(message){
-
-const box = $("toast");
-
-if(!box) return;
-
-box.textContent = message;
-
-box.classList.add("show");
-
-setTimeout(()=>{
-box.classList.remove("show");
-},2200);
-
-}
-
-
-/* =========================
-   SECTION NAVIGATION
-   ========================= */
-
-function showSection(section){
-
-document
-.querySelectorAll(".section")
-.forEach(s =>
-s.classList.add("hidden")
-);
-
-const target = $(section);
-
-if(target){
-target.classList.remove("hidden");
-}
-
-document
-.querySelectorAll(".nav-link")
-.forEach(link => {
-
-link.classList.toggle(
-"active",
-link.dataset.section === section
-);
-
-});
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =========================
-   NAVIGATION
-   ========================= */
-
-document.addEventListener("click",function(e){
-
-const element =
-e.target.closest("[data-section]");
-
-if(!element) return;
-
-e.preventDefault();
-
-showSection(
-element.dataset.section
-);
-
-});
-
-
-/* =========================
-   AUTH
-   ========================= */
-
-function initAuth(){
-
-if(account){
-
-$("accountPage")
-.classList.add("hidden");
-
-$("app")
-.classList.remove("hidden");
-
-renderProfile();
-
-}else{
-
-$("accountPage")
-.classList.remove("hidden");
-
-$("app")
-.classList.add("hidden");
-
-}
-
-}
-
-
-$("switchAuth").onclick = function(){
-
-const signup =
-$("signupForm");
-
-const login =
-$("loginForm");
-
-signup.classList.toggle("hidden");
-
-login.classList.toggle("hidden");
-
-const isLogin =
-!login.classList.contains("hidden");
-
-$("authText").textContent =
-isLogin
-? "Don't have an account?"
-: "Already have an account?";
-
-$("switchAuth").textContent =
-isLogin
-? "Create one now"
-: "Login here";
-
-};
-
-
-$("signupForm").onsubmit = function(e){
-
-e.preventDefault();
-
-if(
-$("accPassword").value !==
-$("accConfirm").value
-){
-
-toast("❌ Passwords do not match");
-
-return;
-
-}
-
-account = {
-
-name:$("accName").value.trim(),
-
-email:$("accEmail").value.trim(),
-
-phone:$("accPhone").value.trim(),
-
-photo:""
-
-};
-
-saveData();
-
-toast("✅ Account created!");
-
-setTimeout(
-initAuth,
-350
-);
-
-};
-
-
-$("loginForm").onsubmit = function(e){
-
-e.preventDefault();
-
-if(!account){
-
-toast("Create an account first");
-
-return;
-
-}
-
-toast("✅ Login successful");
-
-setTimeout(
-initAuth,
-350
-);
-
-};
-
-
-/* =========================
-   PASSWORD EYE
-   ========================= */
-
-document
-.querySelectorAll(".eye")
-.forEach(button => {
-
-button.onclick = function(){
-
-const input =
-$(button.dataset.target);
-
-if(
-input.type === "password"
-){
-
-input.type = "text";
-
-button.textContent = "🙈";
-
-}else{
-
-input.type = "password";
-
-button.textContent = "👁";
-
-}
-
-};
-
-});
-
-
-/* =========================
-   CATEGORY RENDER
-   ========================= */
-
-function renderCategories(){
-
-$("homeCategories").innerHTML =
-categories.map(category => {
-
-const info =
-categoryInfo[category];
-
-return `
-
-<button
-class="category-card"
-data-cat="${category}"
->
-
-<h3>
-${info[0]} ${info[1]}
-</h3>
-
-<p>
-${info[2]}
-</p>
-
-<img
-src="${info[3]}"
-alt="${info[1]}"
->
-
-</button>
-
-`;
-
-}).join("");
-
-
-$("categoryTabs").innerHTML =
-
-`
-
-<button
-class="cat-btn active"
-data-cat="all"
->
-All
-</button>
-
-`
-
-+
-
-categories.map(category => {
-
-const info =
-categoryInfo[category];
-
-return `
-
-<button
-class="cat-btn"
-data-cat="${category}"
->
-
-${info[0]}
-${info[1]}
-
-</button>
-
-`;
-
-}).join("");
-
-
-document
-.querySelectorAll(".category-card")
-.forEach(button => {
-
-button.onclick = function(){
-
-currentCategory =
-button.dataset.cat;
-
-showSection("products");
-
-renderProducts();
-
-};
-
-});
-
-
-document
-.querySelectorAll(".cat-btn")
-.forEach(button => {
-
-button.onclick = function(){
-
-document
-.querySelectorAll(".cat-btn")
-.forEach(x =>
-x.classList.remove("active")
-);
-
-button.classList.add("active");
-
-currentCategory =
-button.dataset.cat;
-
-renderProducts();
-
-};
-
-});
-
-}
-
-
-/* =========================
-   FILTER PRODUCTS
-   ========================= */
-
-function filteredProducts(){
-
-let list =
-products.filter(product =>
-
-currentCategory === "all" ||
-
-product.category === currentCategory
-
-);
-
-
-if(currentSearch){
-
-list =
-list.filter(product =>
-
-(
-
-product.name +
-" " +
-product.desc +
-" " +
-product.category
-
-)
-.toLowerCase()
-.includes(
-currentSearch.toLowerCase()
-)
-
-);
-
-}
-
-
-if(currentPrice !== "all"){
-
-list =
-list.filter(product => {
-
-if(currentPrice === "0-10000")
-return product.price <= 10000;
-
-if(currentPrice === "10000-50000")
-return product.price > 10000 &&
-product.price <= 50000;
-
-if(currentPrice === "50000-100000")
-return product.price > 50000 &&
-product.price <= 100000;
-
-if(currentPrice === "100000+")
-return product.price > 100000;
-
-return true;
-
-});
-
-}
-
-
-if(currentSort === "price-low"){
-
-list.sort(
-(a,b)=>a.price-b.price
-);
-
-}
-
-
-if(currentSort === "price-high"){
-
-list.sort(
-(a,b)=>b.price-a.price
-);
-
-}
-
-
-return list;
-
-}
-
-
-/* =========================
-   PRODUCT CARD
-   ========================= */
-
-function productCard(product){
-
-const wished =
-wishlist.some(
-item => item.id === product.id
-);
-
-const oldPrice =
-product.discount
-?
-Math.round(
-product.price /
-(1-product.discount/100)
-)
-:
-0;
-
-return `
-
-<article
-class="product-card"
-data-id="${product.id}"
->
-
-<div class="product-img-wrap">
-
-<span class="badge">
-${product.badge}
-</span>
-
-<button
-class="wish ${wished ? "active":""}"
-data-wish="${product.id}"
->
-${wished ? "♥":"♡"}
-</button>
-
-<img
-class="product-img"
-src="${product.img}"
-alt="${product.name}"
-data-img="${product.id}"
->
-
-</div>
-
-
-<div class="product-info">
-
-<div class="rating">
-★★★★★
-</div>
-
-<h3>
-${product.name}
-</h3>
-
-<p>
-${product.desc}
-</p>
-
-<div>
-
-<span class="price">
-${money(product.price)}
-</span>
-
-${
-oldPrice
-?
-`
-<span class="old-price">
-${money(oldPrice)}
-</span>
-`
-:""
-}
-
-</div>
-
-
-<div class="card-actions">
-
-<button
-class="outline-btn"
-data-view="${product.id}"
->
-View
-</button>
-
-<button
-class="primary-btn"
-data-cart="${product.id}"
->
-Add
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-/* =========================
-   RENDER PRODUCTS
-   ========================= */
-
-function renderProducts(
-target = "productGrid",
-list = filteredProducts()
-){
-
-if(!$(target)) return;
-
-$(target).innerHTML =
-list.map(productCard).join("");
-
-if($("resultCount")){
-
-$("resultCount").textContent =
-`${list.length} product${list.length !== 1 ? "s":""}`;
-
-}
-
-attachProductEvents(target);
-
-}
-
-
-/* =========================
-   PRODUCT EVENTS
-   ========================= */
-
-function attachProductEvents(target){
-
-/* 3D TILT */
-
-document
-.querySelectorAll(
-`#${target} .product-card`
-)
-.forEach(card => {
-
-card.addEventListener(
-"mousemove",
-function(e){
-
-const rect =
-card.getBoundingClientRect();
-
-const x =
-e.clientX - rect.left;
-
-const y =
-e.clientY - rect.top;
-
-const rotateX =
--(y / rect.height - .5) * 10;
-
-const rotateY =
-(x / rect.width - .5) * 12;
-
-card.style.transform =
-
-`perspective(900px)
-rotateX(${rotateX}deg)
-rotateY(${rotateY}deg)
-translateZ(5px)`;
-
-});
-
-
-card.addEventListener(
-"mouseleave",
-function(){
-
-card.style.transform = "";
-
-});
-
-});
-
-
-/* ADD TO CART */
-
-document
-.querySelectorAll(
-`#${target} [data-cart]`
-)
-.forEach(button => {
-
-button.onclick = function(){
-
-addCart(
-Number(button.dataset.cart)
-);
-
-};
-
-});
-
-
-/* WISHLIST */
-
-document
-.querySelectorAll(
-`#${target} [data-wish]`
-)
-.forEach(button => {
-
-button.onclick = function(){
-
-toggleWishlist(
-Number(button.dataset.wish)
-);
-
-};
-
-});
-
-
-/* VIEW POPUP */
-
-document
-.querySelectorAll(
-`#${target} [data-view]`
-)
-.forEach(button => {
-
-button.onclick = function(){
-
-openProduct(
-Number(button.dataset.view)
-);
-
-};
-
-});
-
-
-/* IMAGE ZOOM */
-
-document
-.querySelectorAll(
-`#${target} [data-img]`
-)
-.forEach(image => {
-
-image.onclick = function(){
-
-openZoom(
-image.src
-);
-
-};
-
-
-/* DOUBLE CLICK = PRODUCT POPUP */
-
-image.ondblclick = function(){
-
-openProduct(
-Number(image.dataset.img)
-);
-
-};
-
-});
-
-}
-
-
-/* =========================
-   SEARCH
-   ========================= */
-
-$("searchInput").oninput =
-function(){
-
-currentSearch =
-this.value;
-
-showSection("products");
-
-renderProducts();
-
-};
-
-
-$("searchBtn").onclick =
-function(){
-
-currentSearch =
-$("searchInput").value;
-
-showSection("products");
-
-renderProducts();
-
-};
-
-
-/* =========================
-   PRICE / SORT
-   ========================= */
-
-$("priceFilter").onchange =
-function(){
-
-currentPrice =
-this.value;
-
-renderProducts();
-
-};
-
-
-$("sortFilter").onchange =
-function(){
-
-currentSort =
-this.value;
-
-renderProducts();
-
-};
-
-
-/* =========================
-   CART
-   ========================= */
-
-function addCart(id,quantity=1){
-
-const product =
-products.find(
-p => p.id === id
-);
-
-if(!product) return;
-
-const existing =
-cart.find(
-p => p.id === id
-);
-
-if(existing){
-
-existing.quantity += quantity;
-
-}else{
-
-cart.push({
-
-...product,
-
-quantity
-
-});
-
-}
-
-saveData();
-
-updateCounts();
-
-renderCart();
-
-toast("🛒 Added to cart");
-
-}
-
-
-function removeCart(id){
-
-cart =
-cart.filter(
-p => p.id !== id
-);
-
-saveData();
-
-updateCounts();
-
-renderCart();
-
-}
-
-
-function changeQty(id,difference){
-
-const item =
-cart.find(
-p => p.id === id
-);
-
-if(!item) return;
-
-item.quantity += difference;
-
-if(item.quantity <= 0){
-
-removeCart(id);
-
-return;
-
-}
-
-saveData();
-
-renderCart();
-
-updateCounts();
-
-}
-
-
-/* =========================
-   COUNTS
-   ========================= */
-
-function updateCounts(){
-
-if($("cartCount")){
-
-$("cartCount").textContent =
-cart.reduce(
-(total,item) =>
-total + item.quantity,
-0
-);
-
-}
-
-if($("wishCount")){
-
-$("wishCount").textContent =
-wishlist.length;
-
-}
-
-}
-
-
-/* =========================
-   CART RENDER
-   ========================= */
-
-function renderCart(){
-
-const container =
-$("cartItems");
-
-if(!container) return;
-
-if(!cart.length){
-
-container.innerHTML =
-`
-<p class="muted">
-Your cart is empty.
-</p>
-`;
-
-$("cartTotal").textContent =
-"Total: ₹0";
-
-return;
-
-}
-
-
-container.innerHTML =
-cart.map(item => `
-
-<div class="cart-row">
-
-<img
-src="${item.img}"
-alt="${item.name}"
->
-
-<div style="flex:1">
-
-<b>
-${item.name}
-</b>
-
-<div>
-${money(item.price)}
-</div>
-
-<div class="qty">
-
-<button
-onclick="changeQty(${item.id},-1)"
-  −
-</button>
-
-${item.quantity}
-
-<button
-onclick="changeQty(${item.id},1)"
->
-+
-</button>
-
-<button
-class="danger-btn"
-onclick="removeCart(${item.id})"
->
-Remove
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`).join("");
-
-
-const total =
-cart.reduce(
-(sum,item) =>
-sum + item.price * item.quantity,
-0
-) - coupon;
-
-
-$("cartTotal").textContent =
-`Total: ${money(Math.max(0,total))}`;
-
-}
-
-
-/* =========================
-   WISHLIST
-   ========================= */
-
-function toggleWishlist(id){
-
-const product =
-products.find(
-p => p.id === id
-);
-
-if(!product) return;
-
-const index =
-wishlist.findIndex(
-p => p.id === id
-);
-
-if(index >= 0){
-
-wishlist.splice(index,1);
-
-toast(
-"Removed from wishlist"
-);
-
-}else{
-
-wishlist.push(product);
-
-toast(
-"❤️ Added to wishlist"
-);
-
-}
-
-saveData();
-
-updateCounts();
-
-renderProducts();
-
-renderFeatured();
-
-renderWishlist();
-
-}
-
-
-function renderWishlist(){
-
-const container =
-$("wishlistItems");
-
-if(!container) return;
-
-if(!wishlist.length){
-
-container.innerHTML =
-`
-<p class="muted">
-No saved products yet.
-</p>
-`;
-
-return;
-
-}
-
-
-container.innerHTML =
-wishlist.map(item => `
-
-<div class="cart-row">
-
-<img
-src="${item.img}"
-alt="${item.name}"
->
-
-<div style="flex:1">
-
-<b>
-${item.name}
-</b>
-
-<div>
-${money(item.price)}
-</div>
-
-<button
-class="primary-btn small"
-onclick="addCart(${item.id})"
->
-Add to cart
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* =========================
-   DRAWERS
-   ========================= */
-
-function openDrawer(id){
-
-$(id).classList.add("open");
-
-$("drawerShade")
-.classList.add("open");
-
-renderCart();
-
-renderWishlist();
-
-}
-
-
-function closeDrawer(id){
-
-$(id).classList.remove("open");
-
-if(
-!document.querySelector(".drawer.open")
-){
-
-$("drawerShade")
-.classList.remove("open");
-
-}
-
-}
-
-
-$("cartBtn").onclick =
-()=>openDrawer("cartDrawer");
-
-
-$("wishlistBtn").onclick =
-()=>openDrawer("wishlistDrawer");
-
-
-$("drawerShade").onclick =
-function(){
-
-closeDrawer("cartDrawer");
-
-closeDrawer("wishlistDrawer");
-
-};
-
-
-/* =========================
-   COUPON
-   ========================= */
-
-$("applyCoupon").onclick =
-function(){
-
-const code =
-$("couponInput")
-.value
-.trim()
-.toUpperCase();
-
-
-if(code === "SAVE10"){
-
-coupon = 500;
-
-toast(
-"✅ SAVE10 applied: ₹500 off"
-);
-
-}
-
-else if(
-code === "ELECTRO20"
-){
-
-coupon = 1000;
-
-toast(
-"✅ ELECTRO20 applied: ₹1000 off"
-);
-
-}
-
-else{
-
-coupon = 0;
-
-toast(
-"❌ Invalid coupon"
-);
-
-}
-
-renderCart();
-
-};
-
-/* =========================
-   PRODUCT POPUP
-   ========================= */
-
-function openProduct(id){
-
-const product =
-products.find(
-p => p.id === id
-);
-
-if(!product) return;
-
-
-$("productModalContent")
-.innerHTML = `
-
-<div class="product-modal-grid">
-
-<img
-src="${product.img}"
-alt="${product.name}"
-onclick="openZoom(this.src)"
->
-
-<div>
-
-<span class="eyebrow">
-${product.badge}
-</span>
-
-<h2>
-${product.name}
-</h2>
-
-<div class="rating">
-★★★★★
-</div>
-
-<p>
-${product.desc}
-</p>
-
-<h3>
-${money(product.price)}
-</h3>
-
-<p class="muted">
-Single click image = zoom.
-<br>
-Double click product image = popup.
-</p>
-
-<button
-class="primary-btn full"
-onclick="addCart(${product.id})"
->
-Add to Cart
-</button>
-
-</div>
-
-</div>
-
-`;
-
-$("productModal")
-.classList.add("open");
-
-}
-
-
-/* =========================
-   IMAGE ZOOM
-   ========================= */
-
-function openZoom(image){
-
-$("zoomImage").src =
-image;
-
-$("imageModal")
-.classList.add("open");
-
-}
-
-
-/* =========================
-   MODAL CLOSE
-   ========================= */
-
-document
-.querySelectorAll("[data-close]")
-.forEach(button => {
-
-button.onclick =
-function(){
-
-const id =
-button.dataset.close;
-
-$(id).classList.remove("open");
-
-if(id.includes("Drawer")){
-
-$("drawerShade")
-.classList.remove("open");
-
-}
-
-};
-
-});
-
-
-document
-.querySelectorAll(".modal")
-.forEach(modal => {
-
-modal.addEventListener(
-"click",
-function(e){
-
-if(e.target === modal){
-
-modal.classList.remove("open");
-
-}
-
-});
-
-});
-
-
-/* =========================
-   CHECKOUT
-   ========================= */
-
-$("checkoutBtn").onclick =
-function(){
-
-if(!cart.length){
-
-toast(
-"Cart is empty"
-);
-
-return;
-
-}
-
-openCheckout();
-
-};
-
-
-function openCheckout(){
-
-const total =
-Math.max(
-
-0,
-
-cart.reduce(
-(sum,item) =>
-sum +
-item.price *
-item.quantity,
-0
-) - coupon
-
-);
-
-
-$("checkoutContent")
-.innerHTML = `
-
-<h2>
-Confirm Order
-</h2>
-
-<p class="muted">
-Choose payment method and confirm your order.
-</p>
-
-
-<h3>
-📍 Delivery Address
-</h3>
-
-<div>
-
-${addresses.map(
-(address,index) => `
-
-<label
-style="
-display:block;
-border:1px solid #ddd;
-padding:12px;
-border-radius:12px;
-margin:8px 0;
-"
->
-
-<input
-type="radio"
-name="addr"
-value="${index}"
-${index === 0 ? "checked":""}
->
-
-<b>
-${address.label}
-</b>
-
-—
-
-${address.detail}
-
-</label>
-
-`
-).join("")}
-
-</div>
-
-
-<h3>
-💳 Payment Method
-</h3>
-
-
-<div class="payment-options">
-
-<button
-class="payment-option selected"
-data-pay="cod"
->
-Cash on Delivery
-</button>
-
-<button
-class="payment-option"
-data-pay="upi"
->
-UPI
-</button>
-
-<button
-class="payment-option"
-data-pay="card"
->
-Credit / Debit Card
-</button>
-
-<button
-class="payment-option"
-data-pay="netbanking"
->
-Net Banking
-</button>
-
-</div>
-
-
-<div
-id="cardFields"
-class="hidden"
->
-
-<input
-placeholder="Card Number"
->
-
-<input
-placeholder="MM / YY"
->
-
-<input
-placeholder="CVV"
->
-
-</div>
-
-
-<div class="checkout-total">
-
-Payable:
-${money(total)}
-
-</div>
-
-
-<button
-id="placeOrderBtn"
-class="primary-btn full"
->
-🚀 Place Order
-</button>
-
-`;
-
-
-document
-.querySelectorAll("[data-pay]")
-.forEach(button => {
-
-button.onclick =
-function(){
-
-document
-.querySelectorAll("[data-pay]")
-.forEach(
-x =>
-x.classList.remove("selected")
-);
-
-button.classList.add(
-"selected"
-);
-
-selectedPayment =
-button.dataset.pay;
-
-$("cardFields")
-.classList.toggle(
-"hidden",
-selectedPayment !== "card"
-);
-
-};
-
-});
-
-
-$("placeOrderBtn").onclick =
-function(){
-
-placeOrder(total);
-
-};
-
-
-$("checkoutModal")
-.classList.add("open");
-
-}
-/* =========================
-   PLACE ORDER
-   ========================= */
-
-function placeOrder(total){
-
-const addressInput =
-$("checkoutContent")
-.querySelector(
-'input[name="addr"]:checked'
-);
-
-
-const addressIndex =
-addressInput
-?
-Number(addressInput.value)
-:
-0;
-
-
-const createdAt =
-Date.now();
-
-
-const orderId =
-"GP" +
-String(createdAt)
-.slice(-8);
-
-
-const paid =
-selectedPayment === "cod"
-?
-0
-:
-total;
-
-
-const pending =
-Math.max(
-0,
-total - paid
-);
-
-
-const order = {
-
-id:orderId,
-
-date:
-new Date(
-createdAt
-).toLocaleString(
-"en-IN"
-),
-
-createdAt,
-
-status:
-"Ordered",
-
-items:
-cart.map(item => ({
-
-id:item.id,
-
-name:item.name,
-
-price:item.price,
-
-quantity:item.quantity,
-
-img:item.img
-
-})),
-
-total,
-
-paid,
-
-pending,
-
-paymentMethod:
-selectedPayment,
-
-address:
-addresses[addressIndex]
-
-};
-
-
-orders.unshift(order);
-
-cart = [];
-
-coupon = 0;
-
-saveData();
-
-updateCounts();
-
-renderCart();
-
-renderProfile();
-
-$("checkoutModal")
-.classList.remove("open");
-
-closeDrawer("cartDrawer");
-
-toast(
-`✅ Order ${orderId} placed successfully`
-);
-
-showSection("profile");
-
-const orderTab =
-document.querySelector(
-'[data-tab="orders"]'
-);
-
-if(orderTab)
-orderTab.click();
-
-}
-
-
-/* =========================
-   ORDER TRACKING
-   ========================= */
-
-function getOrderStatus(order){
-
-const age =
-Date.now() -
-order.createdAt;
-
-
-/*
-  Demo tracking:
-  0-30 sec = Ordered
-  30-90 sec = Shipped
-  90+ sec = Delivered
-*/
-
-if(age > 90000)
-return 2;
-
-if(age > 30000)
-return 1;
-
-return 0;
-
-}
-
-
-function statusText(status){
-
-return [
-
-"Ordered",
-
-"Shipped",
-
-"Delivered"
-
-][status];
-
-}
-
-
-/* =========================
-   ORDERS TAB
-   ========================= */
-
-function renderOrders(){
-
-const container =
-$("tab-orders");
-
-if(!container) return;
-
-
-if(!orders.length){
-
-container.innerHTML = `
-
-<div class="order-card">
-
-<h3>
-No orders yet
-</h3>
-
-<p class="muted">
-Your purchased products will appear here after checkout.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-container.innerHTML =
-orders.map(order => {
-
-const status =
-getOrderStatus(order);
-
-
-return `
-
-<div class="order-card">
-
-
-<div class="order-head">
-
-<div>
-
-<b>
-${order.id}
-</b>
-
-<div class="muted">
-${order.date}
-</div>
-
-</div>
-
-<span class="status">
-${statusText(status)}
-</span>
-
-</div>
-
-
-<div class="tracker">
-
-${[
-"Ordered",
-"Shipped",
-"Delivered"
-]
-.map(
-(step,index) => `
-
-<div
-class="
-track-step
-${index < status ? "done":""}
-${index === status ? "current":""}
-"
->
-
-${index < status ? "✓ ":""}
-
-${step}
-
-</div>
-
-`
-)
-.join("")}
-
-</div>
-
-
-<div class="order-items">
-
-${order.items.map(item => `
-
-<div class="mini-item">
-
-<img
-src="${item.img}"
-alt="${item.name}"
->
-
-<div>
-
-<b>
-${item.name}
-</b>
-
-<small>
-Qty ${item.quantity}
-<br>
-${money(
-item.price *
-item.quantity
-)}
-</small>
-
-</div>
-
-</div>
-
-`).join("")}
-
-</div>
-
-
-<div class="order-head">
-
-<b>
-Total:
-${money(order.total)}
-</b>
-
-<span>
-Payment:
-${order.paymentMethod}
-</span>
-
-</div>
-
-
-<p class="muted">
-
-Delivery:
-${order.address.label}
-—
-${order.address.detail}
-
-</p>
-
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
- /* =========================
-   PAYMENTS TAB
-   ========================= */
-
-function renderPayments(){
-
-const container =
-$("tab-payments");
-
-if(!container) return;
-
-
-const total =
-orders.reduce(
-(sum,order) =>
-sum + order.total,
-0
-);
-
-
-const paid =
-orders.reduce(
-(sum,order) =>
-sum + order.paid,
-0
-);
-
-
-const pending =
-orders.reduce(
-(sum,order) =>
-sum + order.pending,
-0
-);
-
-
-container.innerHTML = `
-
-<div class="payment-summary">
-
-<div class="money-box">
-
-<small>
-Total Orders Value
-</small>
-
-<br>
-
-<b>
-${money(total)}
-</b>
-
-</div>
-
-
-<div class="money-box">
-
-<small>
-Paid
-</small>
-
-<br>
-
-<b>
-${money(paid)}
-</b>
-
-</div>
-
-
-<div class="money-box">
-
-<small>
-Payment Pending
-</small>
-
-<br>
-
-<b>
-${money(pending)}
-</b>
-
-</div>
-
-</div>
-
-
-${
-orders.length
-
-?
-
-orders.map(order => `
-
-<div class="payment-card">
-
-<div class="order-head">
-
-<b>
-${order.id}
-</b>
-
-<span>
-${order.paymentMethod}
-</span>
-
-</div>
-
-
-<p>
-
-Total:
-${money(order.total)}
-
-·
-
-Paid:
-${money(order.paid)}
-
-·
-
-<span class="pending">
-
-Pending:
-${money(order.pending)}
-
-</span>
-
-</p>
-
-</div>
-
-`).join("")
-
-:
-
-`
-
-<div class="payment-card">
-
-No payment history yet.
-
-</div>
-
-`
-
-}
-
-`;
-
-}
-
-
-/* =========================
-   ADDRESS TAB
-   ========================= */
-
-function renderAddresses(){
-
-const container =
-$("tab-addresses");
-
-if(!container) return;
-
-
-container.innerHTML =
-
-addresses.map(
-(address,index) => `
-
-<div class="address-card">
-
-<div>
-
-<b>
-📍 ${address.label}
-</b>
-
-<p class="muted">
-${address.detail}
-</p>
-
-</div>
-
-<button
-class="danger-btn small"
-onclick="deleteAddress(${index})"
->
-Delete
-</button>
-
-</div>
-
-`
-).join("")
-
-+
-
-`
-
-<button
-class="primary-btn"
-onclick="addAddress()"
->
-+ Add Address
-</button>
-
-`;
-
-}
-
-
-function addAddress(){
-
-const label =
-prompt(
-"Address label (Home / Office)"
-);
-
-if(!label) return;
-
-
-const detail =
-prompt(
-"Full delivery address"
-);
-
-if(!detail) return;
-
-
-addresses.push({
-
-label,
-
-detail
-
-});
-
-
-saveData();
-
-renderAddresses();
-
-toast(
-"✅ Address added"
-);
-
-}
-
-
-function deleteAddress(index){
-
-if(addresses.length <= 1){
-
-toast(
-"Keep at least one address"
-);
-
-return;
-
-}
-
-
-addresses.splice(
-index,
-1
-);
-
-saveData();
-
-renderAddresses();
-
-toast(
-"Address deleted"
-);
-
+(function () {
+  'use strict';
+
+  /* =====================================================
+     PRODUCT DATA — 28 PRODUCTS (4 categories × 7 each)
+     ===================================================== */
+  const PRODUCTS = [
+    // ---------- PHONES (7) ----------
+    { id: 1, name: 'Nova X5 Pro', price: 74999, category: 'phones', rating: 4.7, desc: 'Flagship 5G phone with 120Hz AMOLED display and 108MP camera.', img: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500' },
+    { id: 2, name: 'Nova Lite 5G', price: 22999, category: 'phones', rating: 4.3, desc: 'Mid-range 5G phone with triple camera and 5000mAh battery.', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500' },
+    { id: 3, name: 'Nova Ultra 5G', price: 89999, category: 'phones', rating: 4.8, desc: 'Ultra flagship with 200MP camera and titanium build.', img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500' },
+    { id: 4, name: 'Nova Fold Z', price: 129999, category: 'phones', rating: 4.6, desc: 'Foldable phone with 7.6" inner display and Snapdragon 8 Gen 3.', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500' },
+    { id: 5, name: 'Nova Neo 5G', price: 16999, category: 'phones', rating: 4.2, desc: 'Budget 5G phone with 90Hz display and 50MP camera.', img: 'https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500' },
+    { id: 6, name: 'Nova Play 6', price: 13999, category: 'phones', rating: 4.1, desc: 'Gaming phone with cooling system and shoulder triggers.', img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500' },
+    { id: 7, name: 'Nova Note 12', price: 34999, category: 'phones', rating: 4.5, desc: 'Stylus phone with 6.7" AMOLED and 108MP camera.', img: 'https://images.unsplash.com/photo-1533228100845-08145b01de14?w=500' },
+
+    // ---------- LAPTOPS (7) ----------
+    { id: 8, name: 'AeroBook Air 14', price: 65999, category: 'laptops', rating: 4.5, desc: 'Ultra-light laptop with M-series chip and 18-hour battery.', img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500' },
+    { id: 9, name: 'AeroBook Gaming 16', price: 89999, category: 'laptops', rating: 4.6, desc: 'Gaming laptop with RTX GPU and 240Hz display.', img: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500' },
+    { id: 10, name: 'AeroBook Pro 15', price: 119999, category: 'laptops', rating: 4.8, desc: 'Pro laptop with 4K OLED and creator-focused performance.', img: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500' },
+    { id: 11, name: 'AeroBook Studio 17', price: 149999, category: 'laptops', rating: 4.7, desc: '17" studio laptop with color-accurate 4K display.', img: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500' },
+    { id: 12, name: 'AeroBook Ultra 13', price: 99999, category: 'laptops', rating: 4.6, desc: 'Premium ultrabook with 13.6" Liquid Retina display.', img: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=500' },
+    { id: 13, name: 'AeroBook Chromebook', price: 29999, category: 'laptops', rating: 4.0, desc: 'Lightweight Chromebook for everyday tasks.', img: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500' },
+    { id: 14, name: 'AeroBook Work 15', price: 54999, category: 'laptops', rating: 4.3, desc: 'Business laptop with backlit keyboard and long battery.', img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500' },
+
+    // ---------- AUDIO (7) ----------
+    { id: 15, name: 'SonicPods Max', price: 18999, category: 'audio', rating: 4.8, desc: 'Active noise cancelling wireless headphones with spatial audio.', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500' },
+    { id: 16, name: 'BassBoom Speaker', price: 7999, category: 'audio', rating: 4.2, desc: 'Portable waterproof Bluetooth speaker with 30W output.', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500' },
+    { id: 17, name: 'SonicBuds Pro', price: 12999, category: 'audio', rating: 4.6, desc: 'True wireless earbuds with ANC and 32-hour battery.', img: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500' },
+    { id: 18, name: 'SonicBuds Lite', price: 4999, category: 'audio', rating: 4.1, desc: 'Budget wireless earbuds with punchy bass.', img: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500' },
+    { id: 19, name: 'SonicBar Soundbar', price: 24999, category: 'audio', rating: 4.5, desc: 'Dolby Atmos soundbar with wireless subwoofer.', img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500' },
+    { id: 20, name: 'SonicMic Studio', price: 9999, category: 'audio', rating: 4.7, desc: 'USB-C condenser microphone for streaming and podcasts.', img: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500' },
+    { id: 21, name: 'SonicPods ANC Lite', price: 6999, category: 'audio', rating: 4.0, desc: 'Over-ear headphones with hybrid ANC and 40h battery.', img: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500' },
+
+    // ---------- ACCESSORIES (7) ----------
+    { id: 22, name: 'Pulse Watch S2', price: 12999, category: 'accessories', rating: 4.4, desc: 'Smartwatch with AMOLED display, SpO2 and 7-day battery.', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500' },
+    { id: 23, name: 'GameStation Pro', price: 45999, category: 'accessories', rating: 4.9, desc: 'Next-gen gaming console with ray tracing and 4K 120fps.', img: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500' },
+    { id: 24, name: 'PowerBank 20000mAh', price: 2999, category: 'accessories', rating: 4.3, desc: 'Fast-charging power bank with dual USB and Type-C PD.', img: 'https://images.unsplash.com/photo-1609592806596-4d1b2feb0b8d?w=500' },
+    { id: 25, name: 'Wireless Charger Pad', price: 1999, category: 'accessories', rating: 4.2, desc: '15W Qi wireless charger with anti-slip surface.', img: 'https://images.unsplash.com/photo-1591290619762-c1b9f9c0f7c2?w=500' },
+    { id: 26, name: 'ProGrip Gaming Mouse', price: 4999, category: 'accessories', rating: 4.6, desc: 'RGB gaming mouse with 26000 DPI optical sensor.', img: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500' },
+    { id: 27, name: 'MechKeys RGB Keyboard', price: 7999, category: 'accessories', rating: 4.7, desc: 'Mechanical keyboard with hot-swap switches and RGB.', img: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=500' },
+    { id: 28, name: 'VR Vision Headset', price: 34999, category: 'accessories', rating: 4.5, desc: 'Standalone VR headset with 4K display and hand tracking.', img: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=500' }
+  ];
+
+  /* =====================================================
+     STATE
+     ===================================================== */
+  const state = {
+    user: JSON.parse(localStorage.getItem('gp_user') || 'null'),
+    cart: JSON.parse(localStorage.getItem('gp_cart') || '[]'),
+    wishlist: JSON.parse(localStorage.getItem('gp_wishlist') || '[]'),
+    ratings: JSON.parse(localStorage.getItem('gp_ratings') || '{}'),
+    filter: { category: 'all', price: 'all', sort: 'default', search: '' },
+    currentProduct: null,
+    modalQty: 1,
+    authMode: 'signup',
+    pendingAction: null
+  };
+
+  /* =====================================================
+     HELPERS
+     ===================================================== */
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const save = () => {
+    localStorage.setItem('gp_user', JSON.stringify(state.user));
+    localStorage.setItem('gp_cart', JSON.stringify(state.cart));
+    localStorage.setItem('gp_wishlist', JSON.stringify(state.wishlist));
+    localStorage.setItem('gp_ratings', JSON.stringify(state.ratings));
+  };
+  const formatPrice = (n) => '₹' + n.toLocaleString('en-IN');
+  const isLoggedIn = () => !!state.user;
+
+  /* =====================================================
+     AUTH MODAL
+     ===================================================== */
+  function openAuth(mode = 'signup', pendingAction = null) {
+    state.authMode = mode;
+    state.pendingAction = pendingAction;
+    $('#authTitle').textContent = mode === 'signup' ? 'Create Account' : 'Login';
+    $('#authSubmit').textContent = mode === 'signup' ? 'Create Account' : 'Login';
+    $('#authSwitch').textContent = mode === 'signup'
+      ? 'Already have an account? Login'
+      : 'New here? Create Account';
+    openModal('authModal');
+  }
+
+  function handleAuthSubmit() {
+    const name = $('#authName').value.trim();
+    const email = $('#authEmail').value.trim();
+    const password = $('#authPassword').value.trim();
+
+    if (!email || !password || (state.authMode === 'signup' && !name)) {
+      alert('Please fill all fields');
+      return;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      alert('Enter a valid email');
+      return;
+    }
+
+    state.user = {
+      name: state.authMode === 'signup' ? name : (state.user?.name || 'User'),
+      email,
+      phone: state.user?.phone || '—'
+    };
+    save();
+    updateProfileUI();
+    closeModal('authModal');
+    clearAuthFields();
+
+    if (typeof state.pendingAction === 'function') {
+      const fn = state.pendingAction;
+      state.pendingAction = null;
+      fn();
+    }
+  }
+
+  function clearAuthFields() {
+    $('#authName').value = '';
+    $('#authEmail').value = '';
+    $('#authPassword').value = '';
+  }
+
+  function updateProfileUI() {
+    if (state.user) {
+      $('#pName').textContent = state.user.name;
+      $('#pEmail').textContent = state.user.email;
+      $('#pPhone').textContent = state.user.phone;
+      $('#profilePhoto').textContent = state.user.name.charAt(0).toUpperCase();
+    } else {
+      $('#pName').textContent = 'Guest User';
+      $('#pEmail').textContent = 'guest@example.com';
+      $('#pPhone').textContent = '—';
+      $('#profilePhoto').textContent = '👤';
+    }
+  }
+
+  function requireAuth(action) {
+    if (isLoggedIn()) return true;
+    openAuth('signup', action);
+    return false;
+  }
+
+  /* =====================================================
+     MODALS
+     ===================================================== */
+  function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('open');
+    closeMenu();
+  }
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('open');
+  }
+  function closeAllModals() {
+    $$('.modal-overlay').forEach((m) => m.classList.remove('open'));
+  }
+
+  /* =====================================================
+     PRODUCTS RENDER
+     ===================================================== */
+  function getFilteredProducts() {
+    let list = [...PRODUCTS];
+    const { category, price, sort, search } = state.filter;
+
+    if (category !== 'all') list = list.filter((p) => p.category === category);
+
+    if (price === 'low') list = list.filter((p) => p.price < 20000);
+    else if (price === 'mid') list = list.filter((p) => p.price >= 20000 && p.price <= 60000);
+    else if (price === 'high') list = list.filter((p) => p.price > 60000);
+
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q)
+      );
+    }
+
+    if (sort === 'lowhigh') list.sort((a, b) => a.price - b.price);
+    else if (sort === 'highlow') list.sort((a, b) => b.price - a.price);
+    else if (sort === 'rating') list.sort((a, b) => b.rating - a.rating);
+
+    return list;
+  }
+
+  function renderProducts() {
+    const grid = $('#productsGrid');
+    if (!grid) return;
+    const list = getFilteredProducts();
+
+    if (!list.length) {
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px 0;">No products found.</p>';
+      return;
+    }
+
+    grid.innerHTML = list
+      .map((p) => {
+        const inWish = state.wishlist.includes(p.id);
+        return `
+        <div class="product-card" data-id="${p.id}">
+          <div class="card-img-wrap" data-img="${p.id}">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <p class="card-cat">${p.category}</p>
+            <h3 data-details="${p.id}">${p.name}</h3>
+            <p class="card-rating">⭐ ${p.rating}</p>
+            <p class="card-price">${formatPrice(p.price)}</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-add-cart" data-add="${p.id}">Add to Cart</button>
+            <button class="btn-wish ${inWish ? 'active' : ''}" data-wish="${p.id}" aria-label="Wishlist">❤</button>
+          </div>
+        </div>`;
+      })
+      .join('');
+
+    attachProductEvents();
+    initTilt();
+  }
+
+  function attachProductEvents() {
+    $$('.product-card').forEach((card) => {
+      const id = Number(card.dataset.id);
+
+      const imgWrap = card.querySelector('.card-img-wrap');
+      let clickTimer = null;
+      imgWrap.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (clickTimer) {
+          clearTimeout(clickTimer);
+          clickTimer = null;
+          openProductDetails(id);
+          return;
         }
-
-/* =========================
-   PROFILE
-   ========================= */
-
-function renderProfile(){
-
-if(!account) return;
-
-
-$("profileName")
-.textContent =
-account.name ||
-"Gadget User";
-
-
-$("profileContact")
-.textContent =
-`${account.email || ""} · ${account.phone || ""}`;
-
-
-$("profilePhoto").src =
-account.photo ||
-
-`https://ui-avatars.com/api/?name=${encodeURIComponent(
-account.name || "Gadget User"
-)}&background=ff6a00&color=fff&size=240`;
-
-
-renderOrders();
-
-renderPayments();
-
-renderAddresses();
-
-}
-
-
-/* =========================
-   PROFILE TABS
-   ========================= */
-
-document
-.querySelectorAll(".profile-tab")
-.forEach(button => {
-
-button.onclick =
-function(){
-
-document
-.querySelectorAll(".profile-tab")
-.forEach(
-x =>
-x.classList.remove("active")
-);
-
-document
-.querySelectorAll(".profile-content")
-.forEach(
-x =>
-x.classList.add("hidden")
-);
-
-button.classList.add(
-"active"
-);
-
-$("tab-" + button.dataset.tab)
-.classList.remove("hidden");
-
-};
-
-});
-
-
-/* =========================
-   EDIT PROFILE
-   ========================= */
-
-function editProfile(){
-
-$("editProfileBox")
-.classList.remove("hidden");
-
-
-$("editName").value =
-account.name || "";
-
-
-$("editEmail").value =
-account.email || "";
-
-
-$("editPhone").value =
-account.phone || "";
-
-}
-
-
-$("editProfileBtn").onclick =
-editProfile;
-
-
-$("editProfileBtn2").onclick =
-editProfile;
-
-
-$("cancelProfile").onclick =
-function(){
-
-$("editProfileBox")
-.classList.add("hidden");
-
-};
-
-
-$("saveProfile").onclick =
-function(){
-
-account.name =
-$("editName")
-.value
-.trim();
-
-
-account.email =
-$("editEmail")
-.value
-.trim();
-
-
-account.phone =
-$("editPhone")
-.value
-.trim();
-
-
-saveData();
-
-renderProfile();
-
-$("editProfileBox")
-.classList.add("hidden");
-
-toast(
-"✅ Profile updated"
-);
-
-};
-
-
-/* =========================
-   PROFILE PHOTO
-   ========================= */
-
-$("photoInput").onchange =
-function(e){
-
-const file =
-e.target.files[0];
-
-if(!file) return;
-
-
-const reader =
-new FileReader();
-
-
-reader.onload =
-function(){
-
-account.photo =
-reader.result;
-
-saveData();
-
-renderProfile();
-
-toast(
-"📷 Profile photo updated"
-);
-
-};
-
-
-reader.readAsDataURL(file);
-
-};
-
-
-/* =========================
-   LOGOUT
-     ========================= */
-
-$("logoutBtn").onclick =
-function(){
-
-if(
-confirm(
-"Logout from GadgetPoint?"
-)
-){
-
-localStorage.removeItem(
-"gadgetpoint_account"
-);
-
-account = null;
-
-initAuth();
-
-}
-
-};
-
-
-/* =========================
-   MOBILE MENU
-   ========================= */
-
-$("mobileMenu").onclick =
-function(){
-
-$("navLinks")
-.classList.toggle(
-"open"
-);
-
-};
-
-
-/* =========================
-   TOP BUTTON
-   ========================= */
-
-$("topBtn").onclick =
-function(){
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-};
-
-
-window.addEventListener(
-"scroll",
-function(){
-
-if(
-window.scrollY > 500
-){
-
-$("topBtn")
-.style.display =
-"block";
-
-}else{
-
-$("topBtn")
-.style.display =
-"none";
-
-}
-
-});
-
-
-/* =========================
-   FEATURED PRODUCTS
-   ========================= */
-
-function renderFeatured(){
-
-renderProducts(
-"featuredGrid",
-products.slice(0,8)
-);
-
-}
-
-
-/* =========================
-   INITIAL LOAD
-   ========================= */
-
-renderCategories();
-
-renderFeatured();
-
-renderProducts();
-
-updateCounts();
-
-renderCart();
-
-renderWishlist();
-
-initAuth();
-
-
-/* =========================
-   LIVE ORDER STATUS REFRESH
-   ========================= */
-
-setInterval(
-function(){
-
-if(
-account &&
-orders.length
-){
-
-renderOrders();
-
-}
-
-},
-5000
-);
-  
+        clickTimer = setTimeout(() => {
+          clickTimer = null;
+          openZoom(id);
+        }, 220);
+      });
+
+      const nameEl = card.querySelector('[data-details]');
+      nameEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openProductDetails(id);
+      });
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('button')) return;
+        if (e.target.closest('.card-img-wrap')) return;
+        openProductDetails(id);
+      });
+    });
+
+    $$('[data-add]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = Number(btn.dataset.add);
+        requireAuth(() => addToCart(id, 1));
+      });
+    });
+
+    $$('[data-wish]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = Number(btn.dataset.wish);
+        requireAuth(() => toggleWishlist(id));
+      });
+    });
+  }
+
+  /* =====================================================
+     3D TILT (desktop only)
+     ===================================================== */
+  function initTilt() {
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canHover) return;
+
+    $$('.product-card').forEach((card) => {
+      if (card.dataset.tiltReady) return;
+      card.dataset.tiltReady = '1';
+
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        const cx = r.width / 2;
+        const cy = r.height / 2;
+        const rx = ((y - cy) / cy) * -8;
+        const ry = ((x - cx) / cx) * 8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
+        card.style.setProperty('--mx', (x / r.width) * 100 + '%');
+        card.style.setProperty('--my', (y / r.height) * 100 + '%');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* =====================================================
+     PRODUCT DETAILS MODAL
+     ===================================================== */
+  function openProductDetails(id) {
+    const p = PRODUCTS.find((x) => x.id === id);
+    if (!p) return;
+    state.currentProduct = p;
+    state.modalQty = 1;
+
+    $('#modalImg').src = p.img;
+    $('#modalImg').alt = p.name;
+    $('#modalName').textContent = p.name;
+    $('#modalCategory').textContent = p.category;
+    $('#modalRating').textContent = '⭐ ' + p.rating;
+    $('#modalPrice').textContent = formatPrice(p.price);
+    $('#modalDesc').textContent = p.desc;
+    $('#qtyValue').textContent = '1';
+
+    renderUserStars(p.id);
+    openModal('productModal');
+  }
+
+  function renderUserStars(productId) {
+    const saved = state.ratings[productId] || 0;
+    $$('#userStars span').forEach((s) => {
+      s.classList.toggle('active', Number(s.dataset.star) <= saved);
+    });
+  }
+
+  /* =====================================================
+     IMAGE ZOOM
+     ===================================================== */
+  function openZoom(id) {
+    const p = PRODUCTS.find((x) => x.id === id);
+    if (!p) return;
+    $('#zoomImg').src = p.img;
+    $('#zoomImg').alt = p.name;
+    openModal('zoomModal');
+  }
+
+  /* =====================================================
+     CART
+     ===================================================== */
+  function addToCart(productId, qty) {
+    const existing = state.cart.find((c) => c.id === productId);
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      state.cart.push({ id: productId, qty });
+    }
+    save();
+    updateCartBadge();
+    animateCartBtn();
+  }
+
+  function updateCartBadge() {
+    const count = state.cart.reduce((sum, c) => sum + c.qty, 0);
+    const badge = $('#cartBadge');
+    if (badge) badge.textContent = count;
+  }
+
+  function animateCartBtn() {
+    const btn = $('#cartBtn');
+    if (!btn) return;
+    btn.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
+      { duration: 350, easing: 'ease-out' }
+    );
+  }
+
+  function renderCart() {
+    const wrap = $('#cartItems');
+    if (!wrap) return;
+    if (!state.cart.length) {
+      wrap.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">Your cart is empty.</p>';
+    } else {
+      wrap.innerHTML = state.cart
+        .map((c) => {
+          const p = PRODUCTS.find((x) => x.id === c.id);
+          if (!p) return '';
+          return `
+          <div class="cart-item" data-id="${p.id}">
+            <img src="${p.img}" alt="${p.name}" />
+            <div class="cart-item-info">
+              <h4>${p.name}</h4>
+              <p>${formatPrice(p.price)} × ${c.qty} = <strong>${formatPrice(p.price * c.qty)}</strong></p>
+            </div>
+            <div class="qty-control">
+              <button data-cart-minus="${p.id}">−</button>
+              <span>${c.qty}</span>
+              <button data-cart-plus="${p.id}">+</button>
+            </div>
+            <button class="cart-remove" data-cart-remove="${p.id}">✕</button>
+          </div>`;
+        })
+        .join('');
+    }
+
+    const total = state.cart.reduce((sum, c) => {
+      const p = PRODUCTS.find((x) => x.id === c.id);
+      return sum + (p ? p.price * c.qty : 0);
+    }, 0);
+    $('#cartTotal').textContent = formatPrice(total);
+
+    $$('[data-cart-plus]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const id = Number(b.dataset.cartPlus);
+        const item = state.cart.find((c) => c.id === id);
+        if (item) { item.qty++; save(); renderCart(); updateCartBadge(); }
+      })
+    );
+    $$('[data-cart-minus]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const id = Number(b.dataset.cartMinus);
+        const item = state.cart.find((c) => c.id === id);
+        if (item && item.qty > 1) { item.qty--; save(); renderCart(); updateCartBadge(); }
+      })
+    );
+    $$('[data-cart-remove]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const id = Number(b.dataset.cartRemove);
+        state.cart = state.cart.filter((c) => c.id !== id);
+        save(); renderCart(); updateCartBadge();
+      })
+    );
+  }
+
+  /* =====================================================
+     WISHLIST
+     ===================================================== */
+  function toggleWishlist(id) {
+    const idx = state.wishlist.indexOf(id);
+    if(idx > -1) state.wishlist.splice(idx, 1);
+    else state.wishlist.push(id);
+    save();
+    updateWishBadge();
+    renderProducts();
+  }
+
+  function updateWishBadge() {
+    const badge = $('#wishBadge');
+    if (badge) badge.textContent = state.wishlist.length;
+  }
+
+  function renderWishlist() {
+    const wrap = $('#wishlistItems');
+    if (!wrap) return;
+    if (!state.wishlist.length) {
+      wrap.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">Your wishlist is empty.</p>';
+      return;
+    }
+    wrap.innerHTML = state.wishlist
+      .map((id) => {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return '';
+        return `
+        <div class="cart-item">
+          <img src="${p.img}" alt="${p.name}" />
+          <div class="cart-item-info">
+            <h4>${p.name}</h4>
+            <p>${formatPrice(p.price)}</p>
+          </div>
+          <button class="cart-remove" data-wish-remove="${p.id}">✕</button>
+        </div>`;
+      })
+      .join('');
+
+    $$('[data-wish-remove]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const id = Number(b.dataset.wishRemove);
+        state.wishlist = state.wishlist.filter((w) => w !== id);
+        save(); updateWishBadge(); renderWishlist(); renderProducts();
+      })
+    );
+  }
+
+  /* =====================================================
+     HAMBURGER MENU
+     ===================================================== */
+  function openMenu() {
+    $('#navLinks').classList.add('open');
+    $('#hamburger').classList.add('active');
+  }
+  function closeMenu() {
+    $('#navLinks').classList.remove('open');
+    $('#hamburger').classList.remove('active');
+  }
+  function toggleMenu() {
+    if ($('#navLinks').classList.contains('open')) closeMenu();
+    else openMenu();
+  }
+
+  /* =====================================================
+     CHATBOT
+     ===================================================== */
+  function initChatbot() {
+    const toggle = $('#chatbotToggle');
+    const box = $('#chatbotBox');
+    const close = $('#chatbotClose');
+    const send = $('#chatbotSend');
+    const input = $('#chatbotInput');
+    const messages = $('#chatbotMessages');
+
+    toggle.addEventListener('click', () => box.classList.toggle('open'));
+    close.addEventListener('click', () => box.classList.remove('open'));
+
+    function reply(text) {
+      const t = text.toLowerCase();
+      if (t.includes('price') || t.includes('cost')) return 'Our prices start from ₹1,999. Check the Products section for details!';
+      if (t.includes('delivery') || t.includes('shipping')) return 'Free shipping on orders above ₹999. Delivery in 3–5 days.';
+      if (t.includes('offer') || t.includes('discount')) return 'Check the Offers section — 10% off on first purchase!';
+      if (t.includes('warranty')) return 'All products come with a 1-year manufacturer warranty.';
+      if (t.includes('hi') || t.includes('hello')) return 'Hello! How can I help you today?';
+      return 'Thanks for your message! Our team will assist you shortly.';
+    }
+
+    function sendMsg() {
+      const text = input.value.trim();
+      if (!text) return;
+      const userEl = document.createElement('div');
+      userEl.className = 'user-msg';
+      userEl.textContent = text;
+      messages.appendChild(userEl);
+      input.value = '';
+      messages.scrollTop = messages.scrollHeight;
+
+      setTimeout(() => {
+        const botEl = document.createElement('div');
+        botEl.className = 'bot-msg';
+        botEl.textContent = reply(text);
+        messages.appendChild(botEl);
+        messages.scrollTop = messages.scrollHeight;
+      }, 500);
+    }
+
+    send.addEventListener('click', sendMsg);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
+  }
+
+  /* =====================================================
+     NAVIGATION
+     ===================================================== */
+  function scrollToSection(name) {
+    const el = document.getElementById(name);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    closeMenu();
+  }
+
+  /* =====================================================
+     INIT
+     ===================================================== */
+  function init() {
+    renderProducts();
+    updateCartBadge();
+    updateWishBadge();
+    updateProfileUI();
+    initChatbot();
+
+    $('#hamburger').addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      const menu = $('#navLinks');
+      const ham = $('#hamburger');
+      if (!menu || !ham) return;
+      if (!menu.contains(e.target) && !ham.contains(e.target)) closeMenu();
+    });
+
+    $$('[data-nav]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToSection(el.dataset.nav);
+      });
+    });
+
+    $('#searchToggle').addEventListener('click', () => {
+      $('#searchBar').classList.toggle('open');
+      if ($('#searchBar').classList.contains('open')) $('#searchInput').focus();
+    });
+    $('#searchInput').addEventListener('input', (e) => {
+      state.filter.search = e.target.value.trim();
+      renderProducts();
+    });
+
+    $('#categoryFilter').addEventListener('change', (e) => {
+      state.filter.category = e.target.value;
+      renderProducts();
+    });
+    $('#priceFilter').addEventListener('change', (e) => {
+      state.filter.price = e.target.value;
+      renderProducts();
+    });
+    $('#sortFilter').addEventListener('change', (e) => {
+      state.filter.sort = e.target.value;
+      renderProducts();
+    });
+
+    $('#cartBtn').addEventListener('click', () => {
+      if (!requireAuth(() => { renderCart(); openModal('cartModal'); })) return;
+      renderCart();
+      openModal('cartModal');
+    });
+
+    $('#wishlistBtn').addEventListener('click', () => {
+      if (!requireAuth(() => { renderWishlist(); openModal('wishlistModal'); })) return;
+      renderWishlist();
+      openModal('wishlistModal');
+    });
+
+    $('#profileBtn').addEventListener('click', () => {
+      updateProfileUI();
+      scrollToSection('profile');
+    });
+
+    $$('.modal-close').forEach((btn) => {
+      btn.addEventListener('click', () => closeModal(btn.dataset.close));
+    });
+
+    $$('.modal-overlay').forEach((overlay) => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+    });
+
+    $('#qtyPlus').addEventListener('click', () => {
+      state.modalQty++;
+      $('#qtyValue').textContent = state.modalQty;
+    });
+    $('#qtyMinus').addEventListener('click', () => {
+      if (state.modalQty > 1) {
+        state.modalQty--;
+        $('#qtyValue').textContent = state.modalQty;
+      }
+    });
+
+    $('#modalAddCart').addEventListener('click', () => {
+      const p = state.currentProduct;
+      if (!p) return;
+      const qty = state.modalQty;
+      if (!requireAuth(() => {
+        addToCart(p.id, qty);
+        closeModal('productModal');
+      })) return;
+      addToCart(p.id, qty);
+      closeModal('productModal');
+    });
+
+    $('#modalWishlist').addEventListener('click', () => {
+      const p = state.currentProduct;
+      if (!p) return;
+      if (!requireAuth(() => toggleWishlist(p.id))) return;
+      toggleWishlist(p.id);
+    });
+
+    $$('#userStars span').forEach((s) => {
+      s.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const p = state.currentProduct;
+        if (!p) return;
+        const rating = Number(s.dataset.star);
+        state.ratings[p.id] = rating;
+        save();
+        renderUserStars(p.id);
+      });
+    });
+
+    $('#authSubmit').addEventListener('click', handleAuthSubmit);
+    $('#authSwitch').addEventListener('click', () => {
+      state.authMode = state.authMode === 'signup' ? 'login' : 'signup';
+      $('#authTitle').textContent = state.authMode === 'signup' ? 'Create Account' : 'Login';
+      $('#authSubmit').textContent = state.authMode === 'signup' ? 'Create Account' : 'Login';
+      $('#authSwitch').textContent = state.authMode === 'signup'
+        ? 'Already have an account? Login'
+        : 'New here? Create Account';
+    });
+
+    $('#checkoutBtn').addEventListener('click', () => {
+      if (!state.cart.length) { alert('Your cart is empty.'); return; }
+      alert('Order placed successfully! (Demo)');
+      state.cart = [];
+      save();
+      updateCartBadge();
+      renderCart();
+      closeModal('cartModal');
+    });
+
+    $('#logoutBtn').addEventListener('click', () => {
+      state.user = null;
+      save();
+      updateProfileUI();
+      alert('Logged out');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllModals();
+        closeMenu();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
