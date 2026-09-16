@@ -1,195 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GadgetPoint | Future Tech Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>GadgetPoint — Future of Tech</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="accountPage" class="account-page">
-  <div class="account-card">
-    <div class="brand big-brand"><span>Gadget</span>Point</div>
-    <p class="muted" id="accountSubtitle">Create your account to enter the store</p>
-
-    <form id="signupForm">
-      <input id="accName" type="text" placeholder="Full Name" required>
-      <input id="accEmail" type="email" placeholder="Email Address" required>
-      <input id="accPhone" type="tel" placeholder="Phone Number" required>
-      <div class="pass-wrap"><input id="accPassword" type="password" placeholder="Create Password" required><button type="button" class="eye" data-target="accPassword">👁</button></div>
-      <div class="pass-wrap"><input id="accConfirm" type="password" placeholder="Confirm Password" required><button type="button" class="eye" data-target="accConfirm">👁</button></div>
-      <button class="primary-btn full" type="submit">🚀 Create Account</button>
-    </form>
-
-    <form id="loginForm" class="hidden">
-      <input id="loginEmail" type="email" placeholder="Email Address" required>
-      <div class="pass-wrap"><input id="loginPassword" type="password" placeholder="Password" required><button type="button" class="eye" data-target="loginPassword">👁</button></div>
-      <button class="primary-btn full" type="submit">🔐 Login</button>
-    </form>
-
-    <p class="switch-auth"><span id="authText">Already have an account?</span> <button id="switchAuth" type="button">Login here</button></p>
-  </div>
-</div>
-
-<div id="app" class="hidden">
-<header class="topbar">
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a class="brand" href="#" data-section="home"><span>Gadget</span>Point</a>
-    <button class="mobile-menu" id="mobileMenu">☰</button>
-    <nav id="navLinks">
-      <a class="nav-link active" href="#" data-section="home">⌂ Home</a>
-      <a class="nav-link" href="#" data-section="about">▣ About</a>
-      <a class="nav-link" href="#" data-section="products">▦ Products</a>
-      <a class="nav-link" href="#" data-section="offers">🔥 Offers</a>
-      <a class="nav-link" href="#" data-section="profile">◉ Profile</a>
+    <a href="#" class="logo" data-nav="home">
+      <span class="logo-mark">⚡</span> Gadget<span class="accent">Point</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#" data-nav="home">Home</a>
+      <a href="#" data-nav="about">About</a>
+      <a href="#" data-nav="products">Products</a>
+      <a href="#" data-nav="offers">Offers</a>
+      <a href="#" data-nav="profile">Profile</a>
     </nav>
-    <div class="nav-tools">
-      <div class="search"><input id="searchInput" placeholder="Search gadgets..."><button id="searchBtn">⌕</button></div>
-      <button class="icon-btn" id="wishlistBtn">♡ <b id="wishCount">0</b></button>
-      <button class="icon-btn" id="cartBtn">🛒 <b id="cartCount">0</b></button>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        ❤️<span class="badge" id="wishBadge">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        🛒<span class="badge" id="cartBadge">0</span>
+      </button>
+      <button class="icon-btn" id="profileBtn" aria-label="Profile">👤</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-bar" id="searchBar">
+    <input type="text" id="searchInput" placeholder="Search gadgets..." />
   </div>
 </header>
 
-<main>
-<section id="home" class="section active">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">NEXT-GEN ELECTRONICS</div>
-      <h1>Upgrade your world.<br><span>Power your future.</span></h1>
-      <p>Premium phones, laptops, wearables and audio gear — now in a bold black, orange and white experience.</p>
-      <div class="hero-actions">
-        <button class="primary-btn" data-section="products">Explore Products →</button>
-        <button class="outline-btn" data-section="offers">View Offers</button>
-      </div>
-      <div class="stats">
-        <div><strong>29+</strong><small>Products</small></div>
-        <div><strong>8</strong><small>Categories</small></div>
-        <div><strong>24/7</strong><small>Support</small></div>
-      </div>
-    </div>
-    <div class="hero-art">
-      <div class="orbit orbit1"></div><div class="orbit orbit2"></div>
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000&q=85&auto=format&fit=crop" alt="Premium smartphone">
-      <div class="floating-tag">⚡ FUTURE READY</div>
-    </div>
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Future of <span class="accent">Tech</span> is Here</h1>
+    <p>Premium gadgets, unbeatable prices, next-gen experience.</p>
+    <button class="btn-primary" data-nav="products">Explore Products</button>
   </div>
-
-  <div class="home-strip">
-    <div><span>⚡</span><b>Fast Delivery</b><small>2–3 business days</small></div>
-    <div><span>🛡</span><b>Genuine Products</b><small>Quality checked</small></div>
-    <div><span>↻</span><b>Easy Returns</b><small>30-day return policy</small></div>
-    <div><span>💳</span><b>Secure Payments</b><small>Multiple methods</small></div>
-  </div>
-
-  <div class="section-head"><div><span class="eyebrow">SHOP BY TYPE</span><h2>Explore Categories</h2></div><button class="text-btn" data-section="products">See all →</button></div>
-  <div class="category-showcase" id="homeCategories"></div>
-
-  <div class="section-head"><div><span class="eyebrow">TRENDING NOW</span><h2>Featured Gadgets</h2></div><button class="text-btn" data-section="products">Shop all →</button></div>
-  <div class="product-grid" id="featuredGrid"></div>
+  <div class="hero-glow"></div>
 </section>
 
-<section id="about" class="section hidden">
-  <div class="page-title"><span class="eyebrow">ABOUT US</span><h2>Technology with a human touch.</h2><p>GadgetPoint is a modern electronics marketplace focused on simple shopping, useful choices and a smooth post-purchase experience.</p></div>
-  <div class="about-grid">
-    <div class="about-image"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=85&auto=format&fit=crop" alt="Technology desk"></div>
-    <div class="about-copy">
-      <h3>Why GadgetPoint?</h3>
-      <p>We bring popular electronics into one clean storefront. Compare products, save favourites, add items to your cart and track your order from your Profile.</p>
-      <div class="about-points">
-        <div>01 <b>Authentic products</b><span>Clear product details and pricing.</span></div>
-        <div>02 <b>Smart shopping</b><span>Search, filters, sorting, wishlist and reviews.</span></div>
-        <div>03 <b>Order visibility</b><span>See purchased items and payment balance after checkout.</span></div>
-        <div>04 <b>Future-ready UI</b><span>3D cards, zoom interactions and responsive design.</span></div>
-      </div>
-    </div>
+<!-- ===== FILTERS ===== -->
+<section class="filters" id="products">
+  <div class="filters-inner">
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="phones">Phones</option>
+      <option value="laptops">Laptops</option>
+      <option value="audio">Audio</option>
+      <option value="accessories">Accessories</option>
+    </select>
+    <select id="priceFilter">
+      <option value="all">All Prices</option>
+      <option value="low">Under ₹20,000</option>
+      <option value="mid">₹20,000 – ₹60,000</option>
+      <option value="high">Above ₹60,000</option>
+    </select>
+    <select id="sortFilter">
+      <option value="default">Sort: Default</option>
+      <option value="lowhigh">Price: Low → High</option>
+      <option value="highlow">Price: High → Low</option>
+      <option value="rating">Top Rated</option>
+    </select>
   </div>
 </section>
 
-<section id="products" class="section hidden">
-  <div class="page-title compact"><span class="eyebrow">PRODUCT LAB</span><h2>All gadgets. One place.</h2></div>
-  <div class="category-tabs" id="categoryTabs"></div>
-  <div class="filter-row">
-    <select id="priceFilter"><option value="all">All prices</option><option value="0-10000">Under ₹10,000</option><option value="10000-50000">₹10,000 – ₹50,000</option><option value="50000-100000">₹50,000 – ₹1,00,000</option><option value="100000+">Above ₹1,00,000</option></select>
-    <select id="sortFilter"><option value="default">Default</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="rating">Rating</option></select>
-    <span id="resultCount"></span>
-  </div>
-  <div class="product-grid" id="productGrid"></div>
+<!-- ===== PRODUCTS GRID ===== -->
+<section class="products-section">
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<section id="offers" class="section hidden">
-  <div class="page-title"><span class="eyebrow">LIMITED DEALS</span><h2>Offers that hit different.</h2><p>Use the existing coupon codes at checkout: <b>SAVE10</b> or <b>ELECTRO20</b>.</p></div>
-  <div class="offer-grid">
-    <article class="offer-card orange"><span>FLASH DEAL</span><h3>Smartphone Sale</h3><p>Save up to ₹15,000 on selected phones.</p><b>UP TO 40% OFF</b></article>
-    <article class="offer-card black"><span>LAPTOP FEST</span><h3>Power User Setup</h3><p>Laptops + accessories for your next project.</p><b>UP TO 35% OFF</b></article>
-    <article class="offer-card white"><span>AUDIO ZONE</span><h3>Sound Upgrade</h3><p>Premium headphones and earbuds.</p><b>BUY 2, GET 1</b></article>
-    <article class="offer-card orange"><span>WEARABLE TECH</span><h3>Smart Watch Deals</h3><p>Fitness, GPS and everyday tracking.</p><b>UP TO 50% OFF</b></article>
-    <article class="offer-card black"><span>COMBO</span><h3>Phone + Audio</h3><p>Build a smarter everyday setup.</p><b>SAVE 25%</b></article>
-    <article class="offer-card white"><span>CHARGING</span><h3>Power Essentials</h3><p>Fast chargers and compact adapters.</p><b>FROM ₹1,499</b></article>
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <h2>About <span class="accent">GadgetPoint</span></h2>
+  <p>We bring you the latest and greatest in technology — curated for enthusiasts, gamers, and professionals.</p>
+</section>
+
+<!-- ===== OFFERS ===== -->
+<section class="offers" id="offers">
+  <h2>Hot <span class="accent">Offers</span></h2>
+  <div class="offers-grid">
+    <div class="offer-card"><h3>10% OFF</h3><p>On first purchase</p></div>
+    <div class="offer-card"><h3>Free Shipping</h3><p>On orders above ₹999</p></div>
+    <div class="offer-card"><h3>EMI Available</h3><p>0% interest</p></div>
   </div>
 </section>
 
-<section id="profile" class="section hidden">
-  <div class="profile-top">
-    <div class="profile-photo-wrap">
-      <img id="profilePhoto" src="https://ui-avatars.com/api/?name=Gadget+User&background=ff6a00&color=fff&size=240" alt="Profile">
-      <label class="photo-upload">📷<input id="photoInput" type="file" accept="image/*"></label>
+<!-- ===== PROFILE ===== -->
+<section class="profile" id="profile">
+  <h2>Your <span class="accent">Profile</span></h2>
+  <div class="profile-card" id="profileCard">
+    <div class="profile-photo" id="profilePhoto">👤</div>
+    <div class="profile-info">
+      <p><strong>Name:</strong> <span id="pName">Guest User</span></p>
+      <p><strong>Email:</strong> <span id="pEmail" class="email-wrap">guest@example.com</span></p>
+      <p><strong>Phone:</strong> <span id="pPhone">—</span></p>
     </div>
-    <div>
-      <span class="eyebrow">MY ACCOUNT</span><h2 id="profileName">Gadget User</h2><p id="profileContact" class="muted"></p>
-      <button class="outline-btn small" id="editProfileBtn">Edit Profile</button>
-    </div>
-  </div>
-
-  <div class="profile-tabs">
-    <button class="profile-tab active" data-tab="orders">📦 Orders</button>
-    <button class="profile-tab" data-tab="payments">💳 Payments</button>
-    <button class="profile-tab" data-tab="addresses">📍 Addresses</button>
-    <button class="profile-tab" data-tab="settings">⚙ Settings</button>
-  </div>
-
-  <div id="tab-orders" class="profile-content active"></div>
-  <div id="tab-payments" class="profile-content hidden"></div>
-  <div id="tab-addresses" class="profile-content hidden"></div>
-  <div id="tab-settings" class="profile-content hidden">
-    <div class="settings-card">
-      <h3>Account Settings</h3>
-      <div class="setting-row"><span>Profile details</span><button class="outline-btn small" id="editProfileBtn2">Edit</button></div>
-      <div class="setting-row"><span>Logout</span><button class="danger-btn" id="logoutBtn">Logout</button></div>
-    </div>
-  </div>
-
-  <div id="editProfileBox" class="edit-box hidden">
-    <h3>Edit Profile</h3>
-    <input id="editName" placeholder="Full Name"><input id="editEmail" type="email" placeholder="Email"><input id="editPhone" placeholder="Phone">
-    <div><button class="primary-btn" id="saveProfile">Save</button> <button class="outline-btn" id="cancelProfile">Cancel</button></div>
+    <button class="btn-outline" id="logoutBtn">Logout</button>
   </div>
 </section>
-</main>
 
-<footer>
-  <div class="footer-brand"><div class="brand"><span>Gadget</span>Point</div><p>Premium tech. Smarter shopping.</p></div>
-  <div><b>Shop</b><a data-section="products">Products</a><a data-section="offers">Offers</a><a data-section="about">About</a></div>
-  <div><b>Support</b><span>Order tracking</span><span>Payment help</span><span>Easy returns</span></div>
-  <div><b>GadgetPoint</b><span>© 2026 All rights reserved</span><span>Made for the next generation.</span></div>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2025 GadgetPoint. All rights reserved.</p>
 </footer>
+
+<!-- ===== PRODUCT DETAILS MODAL ===== -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal product-modal">
+    <button class="modal-close" data-close="productModal">✕</button>
+    <div class="modal-body">
+      <div class="modal-img-wrap">
+        <img id="modalImg" src="" alt="" />
+      </div>
+      <div class="modal-info">
+        <h2 id="modalName"></h2>
+        <p class="modal-category" id="modalCategory"></p>
+        <div class="modal-rating" id="modalRating"></div>
+        <p class="modal-price" id="modalPrice"></p>
+        <p class="modal-desc" id="modalDesc"></p>
+
+        <div class="qty-control">
+          <button id="qtyMinus">−</button>
+          <span id="qtyValue">1</span>
+          <button id="qtyPlus">+</button>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-primary" id="modalAddCart">Add to Cart</button>
+          <button class="btn-outline" id="modalWishlist">❤ Wishlist</button>
+        </div>
+
+        <!-- User Rating -->
+        <div class="user-rating">
+          <p>Rate this product:</p>
+          <div class="stars" id="userStars">
+            <span data-star="1">★</span>
+            <span data-star="2">★</span>
+            <span data-star="3">★</span>
+            <span data-star="4">★</span>
+            <span data-star="5">★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div id="cartDrawer" class="drawer"><div class="drawer-head"><h2>Your Cart</h2><button data-close="cartDrawer">✕</button></div><div id="cartItems"></div><div class="cart-bottom"><input id="couponInput" placeholder="Coupon code"><button id="applyCoupon" class="outline-btn">Apply</button><div id="cartTotal"></div><button id="checkoutBtn" class="primary-btn full">Confirm Order →</button></div></div>
-<div id="wishlistDrawer" class="drawer"><div class="drawer-head"><h2>Wishlist</h2><button data-close="wishlistDrawer">✕</button></div><div id="wishlistItems"></div></div>
-<div id="drawerShade" class="shade"></div>
+<!-- ===== IMAGE ZOOM MODAL ===== -->
+<div class="modal-overlay" id="zoomModal">
+  <div class="modal zoom-modal">
+    <button class="modal-close" data-close="zoomModal">✕</button>
+    <img id="zoomImg" src="" alt="" />
+  </div>
+</div>
 
-<div id="productModal" class="modal"><div class="modal-box product-modal"><button class="modal-close" data-close="productModal">✕</button><div id="productModalContent"></div></div></div>
-<div id="imageModal" class="modal"><div class="image-modal-box"><button class="modal-close" data-close="imageModal">✕</button><img id="zoomImage" alt="Product zoom"></div></div>
+<!-- ===== CART MODAL ===== -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal cart-modal">
+    <button class="modal-close" data-close="cartModal">✕</button>
+    <h2>Your Cart</h2>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total">Total: <span id="cartTotal">₹0</span></div>
+    <button class="btn-primary" id="checkoutBtn">Checkout</button>
+  </div>
+</div>
 
-<div id="checkoutModal" class="modal"><div class="modal-box checkout-box"><button class="modal-close" data-close="checkoutModal">✕</button><div id="checkoutContent"></div></div></div>
+<!-- ===== WISHLIST MODAL ===== -->
+<div class="modal-overlay" id="wishlistModal">
+  <div class="modal wishlist-modal">
+    <button class="modal-close" data-close="wishlistModal">✕</button>
+    <h2>Your Wishlist</h2>
+    <div id="wishlistItems" class="cart-items"></div>
+  </div>
+</div>
 
-<div id="toast"></div>
-<button id="topBtn">↑</button>
+<!-- ===== AUTH MODAL ===== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal auth-modal">
+    <button class="modal-close" data-close="authModal">✕</button>
+    <h2 id="authTitle">Create Account</h2>
+    <input type="text" id="authName" placeholder="Full Name" />
+    <input type="email" id="authEmail" placeholder="Email" />
+    <input type="password" id="authPassword" placeholder="Password" />
+    <button class="btn-primary" id="authSubmit">Create Account</button>
+    <p class="auth-toggle">
+      <span id="authSwitch">Already have an account? Login</span>
+    </p>
+  </div>
+</div>
+
+<!-- ===== ELECTROBOT CHATBOT ===== -->
+<button class="chatbot-toggle" id="chatbotToggle">🤖</button>
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">
+    <span>ElectroBot</span>
+    <button id="chatbotClose">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="bot-msg">Hi! I'm ElectroBot. How can I help you?</div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbotInput" placeholder="Type a message..." />
+    <button id="chatbotSend">➤</button>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
